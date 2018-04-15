@@ -67,9 +67,9 @@ RUN mkdir ${TESSDATA_PREFIX}
 RUN mkdir ${LANGDATA_DIR}
 RUN mkdir ${FONTS_DIR}
 
-COPY ./langdata ${LANGDATA_DIR}
-COPY ./fonts ${FONTS_DIR}/
-COPY ./container-scripts/* ${SCRIPTS_DIR}/
+COPY ./container-data/langdata ${LANGDATA_DIR}
+COPY ./container-data/fonts ${FONTS_DIR}/
+COPY ./container-data/scripts/* ${SCRIPTS_DIR}/
 RUN chmod +x ${SCRIPTS_DIR}/*
 RUN ${SCRIPTS_DIR}/repos_clone.sh
 RUN ${SCRIPTS_DIR}/tessdata_download.sh
