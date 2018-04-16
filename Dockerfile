@@ -50,22 +50,27 @@ CMD ["/usr/sbin/sshd", "-D"]
 
 # Directories
 ENV BASE_DIR        /tesstrainer
+ENV SRC_DIR         ${BASE_DIR}/src
 ENV SCRIPTS_DIR     ${BASE_DIR}/scripts
+ENV WORKSPACE_DIR   ${BASE_DIR}/workspace
 ENV LEP_REPO_URL    https://github.com/DanBloomberg/leptonica.git
-ENV LEP_SRC_DIR     ${BASE_DIR}/leptonica
+ENV LEP_SRC_DIR     ${SRC_DIR}/leptonica
 ENV TES_REPO_URL    https://github.com/sumedhe/tesseract.git
-ENV TES_SRC_DIR     ${BASE_DIR}/tesseract
+ENV TES_SRC_DIR     ${SRC_DIR}/tesseract
 ENV TESSDATA_PREFIX /usr/local/share/tessdata
 ENV LANGDATA_DIR    ${BASE_DIR}/langdata
-ENV FONTS_DIR       ${BASE_DIR}/fonts
+ENV FONTS_DIR       /usr/local/share/fonts
 
-RUN mkdir ${BASE_DIR}
-RUN mkdir ${SCRIPTS_DIR}
-RUN mkdir ${TESSDATA_PREFIX}
-RUN mkdir ${FONTS_DIR}
+RUN mkdir -p ${BASE_DIR}
+RUN mkdir -p ${SRC_DIR}
+RUN mkdir -p ${SCRIPTS_DIR}
+RUN mkdir -p ${FONTS_DIR}
+RUN mkdir -p ${LANGDATA_DIR}
+RUN mkdir -p ${TESSDATA_PREFIX}
 
-COPY ./container-files/fonts     ${FONTS_DIR}/
 COPY ./container-files/scripts   ${SCRIPTS_DIR}/
+COPY ./container-files/fonts     ${FONTS_DIR}/
+COPY ./container-files/langdata  ${LANGDATA_DIR}/
 RUN chmod +x ${SCRIPTS_DIR}/*
 
 RUN ${SCRIPTS_DIR}/repos_clone.sh

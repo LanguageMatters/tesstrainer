@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Generate trainingdata
-docker exec -it t4cmp sh scripts/generate-trainingdata.sh
+docker exec -it tesstrainer_run sh scripts/generate-trainingdata.sh
