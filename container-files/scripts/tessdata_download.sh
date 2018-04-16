@@ -1,5 +1,7 @@
+
 #!/bin/bash
 
+# Tessdata Download
 # osd	Orientation and script detection
 wget -O ${TESSDATA_PREFIX}/osd.traineddata https://github.com/tesseract-ocr/tessdata/raw/3.04.00/osd.traineddata
 # equ	Math / equation detection
