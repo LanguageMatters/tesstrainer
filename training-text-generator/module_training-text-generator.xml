@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_training-text-generator" default="compile.module.training-text-generator">
+  <dirname property="module.training-text-generator.basedir" file="${ant.file.module_training-text-generator}"/>
+  
+  <property name="module.jdk.home.training-text-generator" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.training-text-generator" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.training-text-generator" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.training-text-generator" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="training-text-generator.output.dir" value="${module.training-text-generator.basedir}/out/production/training-text-generator"/>
+  <property name="training-text-generator.testoutput.dir" value="${module.training-text-generator.basedir}/out/test/training-text-generator"/>
+  
+  <path id="training-text-generator.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="training-text-generator.module.production.classpath">
+    <path refid="${module.jdk.classpath.training-text-generator}"/>
+  </path>
+  
+  <path id="training-text-generator.runtime.production.module.classpath">
+    <pathelement location="${training-text-generator.output.dir}"/>
+  </path>
+  
+  <path id="training-text-generator.module.classpath">
+    <path refid="${module.jdk.classpath.training-text-generator}"/>
+    <pathelement location="${training-text-generator.output.dir}"/>
+  </path>
+  
+  <path id="training-text-generator.runtime.module.classpath">
+    <pathelement location="${training-text-generator.testoutput.dir}"/>
+    <pathelement location="${training-text-generator.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.training-text-generator">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.training-text-generator">
+    <patternset refid="excluded.from.module.training-text-generator"/>
+  </patternset>
+  
+  <path id="training-text-generator.module.sourcepath">
+    <dirset dir="${module.training-text-generator.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.training-text-generator" depends="compile.module.training-text-generator.production,compile.module.training-text-generator.tests" description="Compile module training-text-generator"/>
+  
+  <target name="compile.module.training-text-generator.production" depends="register.custom.compilers" description="Compile module training-text-generator; production classes">
+    <mkdir dir="${training-text-generator.output.dir}"/>
+    <javac2 destdir="${training-text-generator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.training-text-generator}/javac">
+      <compilerarg line="${compiler.args.training-text-generator}"/>
+      <bootclasspath refid="training-text-generator.module.bootclasspath"/>
+      <classpath refid="training-text-generator.module.production.classpath"/>
+      <src refid="training-text-generator.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.training-text-generator"/>
+    </javac2>
+    
+    <copy todir="${training-text-generator.output.dir}">
+      <fileset dir="${module.training-text-generator.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.training-text-generator.tests" depends="register.custom.compilers,compile.module.training-text-generator.production" description="compile module training-text-generator; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.training-text-generator" description="cleanup module">
+    <delete dir="${training-text-generator.output.dir}"/>
+    <delete dir="${training-text-generator.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="training-text-generator" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/charsets.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/cldrdata.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/dnsns.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/icedtea-sound.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/jaccess.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/java-atk-wrapper.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/jfxrt.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/localedata.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/nashorn.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunec.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunjce_provider.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/sunpkcs11.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/ext/zipfs.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/jce.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/jfxswt.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/jsse.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/management-agent.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/resources.jar"/>
+      <include name="../java-1.8.0-openjdk-amd64/jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Global Libraries -->
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module training-text-generator -->
+  
+  <dirname property="module.training-text-generator.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.training-text-generator" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.training-text-generator" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.training-text-generator" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.training-text-generator" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="training-text-generator.output.dir" value="${module.training-text-generator.basedir}/out/production/training-text-generator"/>
+  <property name="training-text-generator.testoutput.dir" value="${module.training-text-generator.basedir}/out/test/training-text-generator"/>
+  
+  <path id="training-text-generator.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="training-text-generator.module.production.classpath">
+    <path refid="${module.jdk.classpath.training-text-generator}"/>
+  </path>
+  
+  <path id="training-text-generator.runtime.production.module.classpath">
+    <pathelement location="${training-text-generator.output.dir}"/>
+  </path>
+  
+  <path id="training-text-generator.module.classpath">
+    <path refid="${module.jdk.classpath.training-text-generator}"/>
+    <pathelement location="${training-text-generator.output.dir}"/>
+  </path>
+  
+  <path id="training-text-generator.runtime.module.classpath">
+    <pathelement location="${training-text-generator.testoutput.dir}"/>
+    <pathelement location="${training-text-generator.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.training-text-generator">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.training-text-generator">
+    <patternset refid="excluded.from.module.training-text-generator"/>
+  </patternset>
+  
+  <path id="training-text-generator.module.sourcepath">
+    <dirset dir="${module.training-text-generator.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.training-text-generator" depends="compile.module.training-text-generator.production,compile.module.training-text-generator.tests" description="Compile module training-text-generator"/>
+  
+  <target name="compile.module.training-text-generator.production" description="Compile module training-text-generator; production classes">
+    <mkdir dir="${training-text-generator.output.dir}"/>
+    <javac destdir="${training-text-generator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.training-text-generator}/javac">
+      <compilerarg line="${compiler.args.training-text-generator}"/>
+      <bootclasspath refid="training-text-generator.module.bootclasspath"/>
+      <classpath refid="training-text-generator.module.production.classpath"/>
+      <src refid="training-text-generator.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.training-text-generator"/>
+    </javac>
+    
+    <copy todir="${training-text-generator.output.dir}">
+      <fileset dir="${module.training-text-generator.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.training-text-generator.tests" depends="compile.module.training-text-generator.production" description="compile module training-text-generator; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.training-text-generator" description="cleanup module">
+    <delete dir="${training-text-generator.output.dir}"/>
+    <delete dir="${training-text-generator.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.training-text-generator, clean.artifact.app" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.training-text-generator" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.app" value="${basedir}/out/artifacts/App"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="clean.artifact.app" description="clean App artifact output">
+    <delete dir="${artifact.output.app}"/>
+  </target>
+  
+  <target name="artifact.app" depends="init.artifacts" description="Build &#39;App&#39; artifact">
+    <mkdir dir="${artifact.output.app}"/>
+    <copy todir="${artifact.output.app}">
+      <fileset dir="${basedir}/resources"/>
+    </copy>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.app" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+
+  <target name="run" depends="all">
+    <java classname="${training-text-generator.testoutput.dir}" fork="true"></java>
+  </target>
+</project>
